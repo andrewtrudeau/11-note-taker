@@ -12,7 +12,7 @@ let saveDB = (json) => fs.writeFile(dbPath, json, err => { err ? console.error(e
 
 
 // Require the JSON file and assign it to a variable called `termData`
-const PORT = 8080;
+const PORT = 5296;
 
 // Initialize our app variable by setting it to the value of express()
 const app = express();
@@ -44,6 +44,6 @@ app.delete('/api/notes/:id', (req, res) => {
 
 app.get('/*', (req, res) => res.sendFile(path.join(__dirname, '/public/index.html')));
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 );
